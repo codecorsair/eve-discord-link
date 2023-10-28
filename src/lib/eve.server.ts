@@ -50,17 +50,19 @@ interface CharacterData {
 export async function getCharacterPublicData(characterId: number) {
   try {
 
-    const res = await fetch(`https://esi.evetech.net/latest/characters/${characterId}/?datasource=tranquility`, {
+    const res = await fetch(`https://esi.evetech.net/latest/characters/affiliation/?datasource=tranquility`, {
       headers: {
         'User-Agent': 'EVE-DISCORD-LINK | jb@jb.codes - IGN: Roman Kaas'
-      }
+      },
+      method: 'POST',
+      body: JSON.stringify([characterId])
     });
     if (!res.ok) {
       console.error(`Failed to get character public data for ${characterId}`, res.statusText);
       return null;
     }
 
-    return await res.json() as CharacterData;
+    return (await res.json())[0] as Partial<CharacterData>;
 
   } catch (err) {
     console.error(`Failed to get character public data for ${characterId}`, err);

@@ -29,7 +29,7 @@ cron.schedule("0 * * * *", async () => {
       merged.forEach(async data => {
         await updateMetaData(data.id, {
           character: data.character_id,
-          coporation: data.corporation_id,
+          corporation: data.corporation_id,
           alliance: data.alliance_id,
           faction: data.faction_id
         });
