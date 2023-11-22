@@ -33,9 +33,6 @@ export async function load({ url, cookies }) {
 		console.error('Failed up update metadata', err);
 	}
 
-	console.log(`Updated ${discordUserId} with ${characterId}`);
-	console.log(`affiliations: ${JSON.stringify(characterInfo)}`);
-
 	return characterInfo;
 }
 
